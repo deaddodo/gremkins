@@ -7,6 +7,12 @@
 #include "../shared/iter.h"
 #include "../shared/point.h"
 
+/**
+ * @brief primary entity structure
+ *
+ * This structure reflects the main "character entities in the game. This should stay small and only extend as necessary
+ * as this will be alloc'd dozens-hundreds of times/level
+ */
 typedef struct {
     point_t position, velocity;
     unsigned char status, type;

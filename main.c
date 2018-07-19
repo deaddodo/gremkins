@@ -11,15 +11,22 @@ bool gremlin_collide(gremlin_t* gremlin) {
     return true;
 }
 
+static int SPAWN_COUNT = 15;
+
 int main() {
     gremlin_factory_t factory;
     init_gremlin_factory(&factory);
-    if(factory.spawn(&factory)) {
-        if(factory.spawn(&factory)) {
-            printf("spawned, executing\n");
-            factory.execute(&factory, &gremlin_collide);
-        }
+
+    int spawns = SPAWN_COUNT;
+
+    while(spawns) {
+        printf("spawns: %i\n", spawns);
+        factory.spawn(&factory);
+        --spawns;
     }
+
+    factory.execute(&factory, &gremlin_collide);
+
     destroy_gremlin_factory(&factory);
     return 0;
 }
